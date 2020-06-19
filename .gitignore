@@ -12,5 +12,4 @@ Thumbs.db
 /yarn.lock
 gulpfile.js_*
 /build
-/dist
 /*.html
