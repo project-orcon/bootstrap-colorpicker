@@ -98,12 +98,6 @@ class ColorItem {
    * @example color.replace(hsvaColorData);
    */
 	replace(color, format = null) {
-		//hack
-		if (format != 'hex6') {
-			this._color = QixColor();
-			this._original.valid = false;
-			return;
-		}
 		format = ColorItem.sanitizeFormat(format);
 
 		/**
