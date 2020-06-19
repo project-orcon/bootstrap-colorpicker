@@ -210,6 +210,7 @@ class InputHandler {
 		}
 
 		//even hackier than last solution - dont update for inputs less than 6 digits
+		console.log('debug', this.getValue(), this.getValue().length);
 
 		if (this.getValue().length < 6) {
 			return;
