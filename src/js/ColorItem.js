@@ -98,6 +98,12 @@ class ColorItem {
    * @example color.replace(hsvaColorData);
    */
 	replace(color, format = null) {
+		//hack
+		if (format != 'hex6') {
+			this._color = QixColor();
+			this._original.valid = false;
+			return;
+		}
 		format = ColorItem.sanitizeFormat(format);
 
 		/**
@@ -209,7 +215,7 @@ class ColorItem {
 			return false;
 		}
 
-		return !!str.match(/^#?[0-9a-f]{6,}$/i);
+		return !!str.match(/^#?[0-9a-f]{2,}$/i);
 	}
 
 	/**
