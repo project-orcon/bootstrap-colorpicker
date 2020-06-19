@@ -2,6 +2,18 @@
     <img alt="Logo by @reallinfo" src="logo.png" width="128px" />
 </a>
 
+# Notes on Fork
+Original Color picker will autocomplete 6 digit hex codes, starting from when 3 digits are entered, given that 3 digit hex codes are valid.
+Unwanted behaviour so removed this.
+
+Had to build and add dist to repo in order to be able to use
+
+yarn install "project-orcon/bootstrap-colorpicker" in rails project
+
+
+
+
+
 # Bootstrap Colorpicker
 
 <!--version-->
