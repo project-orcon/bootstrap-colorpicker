@@ -209,12 +209,13 @@ class InputHandler {
 			return;
 		}
 
-		//even hackier than last solution
-		if (
-			this.colorpicker.options.autoInputFallback === false &&
-			this.getValue().length < 6 &&
-			this.colorpicker.colorHandler.isInvalidColor()
-		) {
+		//even hackier than last solution - dont update for inputs less than 6 digits
+
+		if (this.getValue().length < 6) {
+			return;
+		}
+
+		if (this.colorpicker.options.autoInputFallback === false && this.colorpicker.colorHandler.isInvalidColor()) {
 			// prevent update if color is invalid, autoInputFallback is disabled and the last event is keyup.
 			return;
 		}
