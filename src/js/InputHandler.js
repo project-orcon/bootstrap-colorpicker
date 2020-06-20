@@ -224,6 +224,15 @@ class InputHandler {
     this.setValue(this.getFormattedColor());
   }
 
+  // need additional function if update is from picker
+  updateFromPicker() {
+    if (!this.hasInput()) {
+      return;
+    }
+
+    this.setValue(this.getFormattedColor());
+  }
+
   /**
    * Function triggered when the input has changed, so the colorpicker gets updated.
    *
