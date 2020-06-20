@@ -14,7 +14,7 @@ import ColorItem from './ColorItem';
 
 let colorPickerIdCounter = 0;
 
-let root = (typeof self !== 'undefined' ? self : this); // window
+let root = typeof self !== 'undefined' ? self : this; // window
 
 /**
  * Colorpicker widget class
@@ -96,9 +96,7 @@ class Colorpicker {
      *
      * @type {*|jQuery}
      */
-    this.element = $(element)
-      .addClass('colorpicker-element')
-      .attr('data-colorpicker-id', this.id);
+    this.element = $(element).addClass('colorpicker-element').attr('data-colorpicker-id', this.id);
 
     /**
      * @type {defaults}
@@ -122,12 +120,12 @@ class Colorpicker {
      * The element where the
      * @type {*|jQuery}
      */
-    this.container = (
-      this.options.container === true ||
-      (this.options.container !== true && this.options.inline === true)
-    ) ? this.element : this.options.container;
+    this.container =
+			this.options.container === true || (this.options.container !== true && this.options.inline === true) ?
+			  this.element :
+			  this.options.container;
 
-    this.container = (this.container !== false) ? $(this.container) : false;
+    this.container = this.container !== false ? $(this.container) : false;
 
     /**
      * @type {InputHandler}
@@ -157,14 +155,16 @@ class Colorpicker {
     this.init();
 
     // Emit a create event
-    $($.proxy(function () {
-      /**
+    $(
+      $.proxy(function () {
+        /**
        * (Colorpicker) When the Colorpicker instance has been created and the DOM is ready.
        *
        * @event Colorpicker#colorpickerCreate
        */
-      this.trigger('colorpickerCreate');
-    }, this));
+        this.trigger('colorpickerCreate');
+      }, this)
+    );
   }
 
   /**
@@ -212,7 +212,7 @@ class Colorpicker {
     }
 
     if (this.options.debug) {
-      this.options.extensions.push({name: 'debugger'});
+      this.options.extensions.push({ name: 'debugger' });
     }
 
     // Register and instantiate extensions
@@ -250,10 +250,7 @@ class Colorpicker {
     this.addonHandler.unbind();
     this.pickerHandler.unbind();
 
-    this.element
-      .removeClass('colorpicker-element')
-      .removeData('colorpicker', 'color')
-      .off('.colorpicker');
+    this.element.removeClass('colorpicker-element').removeData('colorpicker', 'color').off('.colorpicker');
 
     /**
      * (Colorpicker) When the instance is destroyed with all events unbound.
@@ -304,7 +301,7 @@ class Colorpicker {
   getValue(defaultValue = null) {
     let val = this.colorHandler.color;
 
-    val = (val instanceof ColorItem) ? val : defaultValue;
+    val = val instanceof ColorItem ? val : defaultValue;
 
     if (val instanceof ColorItem) {
       return val.string(this.format);
@@ -325,10 +322,7 @@ class Colorpicker {
     }
     let ch = this.colorHandler;
 
-    if (
-      (ch.hasColor() && !!val && ch.color.equals(val)) ||
-      (!ch.hasColor() && !val)
-    ) {
+    if ((ch.hasColor() && !!val && ch.color.equals(val)) || (!ch.hasColor() && !val)) {
       // same color or still empty
       return;
     }
@@ -353,7 +347,7 @@ class Colorpicker {
    */
   update() {
     if (this.colorHandler.hasColor()) {
-      this.inputHandler.update();
+      this.inputHandler.updateFromPicker();
     } else {
       this.colorHandler.assureColor();
     }
